@@ -7,6 +7,7 @@ module.exports = class Platform {
         this.createProjectResponse = "";
         this.getListProjectResponse = "";
         this.editProjectResponse = "";
+        this.deleteProjectResponse = "";
     }
     createProject(nameProject, description) {
         this.createProjectResponse = "";
@@ -84,6 +85,27 @@ module.exports = class Platform {
         req.write(data);
         req.on('error', error => {
             this.editProjectResponse = 'error : '+ error.message;
+        })
+        req.end()
+    }
+    deleteProject(nameProject){
+        this.deleteProjectResponse = "";
+        const options = {
+            hostname: this.server,
+            port: this.port,
+            path: '/delete/'+nameProject,
+            method: 'DELETE',
+            headers: {
+                'token': this.token
+            }
+        }
+        const req = this.http.request(options, res => {
+            res.on('data', d => {
+                this.deleteProjectResponse = d.toString();
+            })
+        })
+        req.on('error', error => {
+            this.deleteProjectResponse = 'error : '+error.message
         })
         req.end()
     }
