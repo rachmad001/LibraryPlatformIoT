@@ -6,6 +6,7 @@
 Platform::Platform(String token, String server){
     _token = token;
     _server = server;
+    _lastData = "";
 }
 
 void Platform::connectWiFi(String ssid, String password){
@@ -34,4 +35,21 @@ void Platform::sendData(String project, String device,  String data){
     String payload = http.getString();
     Serial.println(payload);              
   }
+}
+
+void Platform::get(String project, String device){
+  _lastData = "";
+  WiFiClient client;
+  HTTPClient http;
+  http.begin(client, _server+"/lastData/"+project+"/"+device);
+  http.addHeader("token", _token);
+  int httpResponseCode = http.GET();
+  if(httpResponseCode > 0){
+    _lastData = http.getString();
+    Serial.println(_lastData);
+  }
+}
+
+String Platform::getData(){
+  return _lastData;
 }
