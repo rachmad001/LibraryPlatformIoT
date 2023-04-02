@@ -37,16 +37,16 @@ void Platform::sendData(String project, String device,  String data){
   }
 }
 
-void Platform::get(String project, String device){
-  _lastData = "";
+String Platform::get(String project, String device){
   WiFiClient client;
   HTTPClient http;
   http.begin(client, _server+"/lastData/"+project+"/"+device);
   http.addHeader("token", _token);
   int httpResponseCode = http.GET();
   if(httpResponseCode > 0){
-    _lastData = http.getString();
-    // Serial.println(_lastData);
+    return http.getString();
+  }else {
+    return get(project, device);
   }
 }
 
