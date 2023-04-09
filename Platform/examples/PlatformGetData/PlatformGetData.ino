@@ -1,5 +1,4 @@
 #include "Platform.h"
-#include <ArduinoJson.h>
 
 String token =  "ptiZNNdIPfgjMqtQziTXN6cbF";
 String server = "http://192.168.137.1:8000";
