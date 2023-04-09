@@ -8,8 +8,8 @@ class Platform
   public:
     Platform(String token, String server);
     void connectWiFi(String ssid, String password);
-    void sendData(String project, String device,  String data);
-    void get(String project, String device);
+    String sendData(String project, String device,  String data);
+    String get(String project, String device);
     String getData();
     
   private:

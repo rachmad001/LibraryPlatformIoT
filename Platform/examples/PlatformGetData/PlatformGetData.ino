@@ -24,7 +24,7 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   if((millis() - lastTime) > interval){
-    platform.get(projectName, devices);
-    String data = Platform.getData();
+    String data = platform.get(projectName, devices);
+    Serial.println(data);
   }
 }

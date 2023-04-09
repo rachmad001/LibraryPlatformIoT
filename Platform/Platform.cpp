@@ -21,7 +21,7 @@ void Platform::connectWiFi(String ssid, String password){
   Serial.println(WiFi.localIP());
 }
 
-void Platform::sendData(String project, String device,  String data){
+String Platform::sendData(String project, String device,  String data){
   WiFiClient client;
   HTTPClient http;
   http.begin(client, _server+"/addData");
@@ -33,7 +33,9 @@ void Platform::sendData(String project, String device,  String data){
   int httpResponseCode = http.POST(datatoServer);
   if(httpResponseCode > 0) {
     String payload = http.getString();
-    Serial.println(payload);              
+    return payload;             
+  }else {
+    return sendData(project, device, data);
   }
 }
 
