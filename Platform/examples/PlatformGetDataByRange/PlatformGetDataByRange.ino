@@ -23,7 +23,8 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   if((millis() - lastTime) > interval){
-    String data = platform.getData(idProject, idDevices);
+    //getDataByRange(idProject, idDevices, startIndexData, endIndexData)
+    String data = platform.getDataByRange(idProject, idDevices, 0, 1);
     Serial.println(data);
   }
 }

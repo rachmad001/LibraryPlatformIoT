@@ -9,15 +9,14 @@ class Platform
     Platform(String token, String server);
     void connectWiFi(String ssid, String password);
     String sendData(String project, String device,  String data);
-    String get(String project, String device);
-    String getData();
+    String getData(String project, String device);
     String getLastData(String project, String device);
+    String getDataByIndex(String project, String device, int index);
+    String getDataByRange(String project, String device, int start, int end);
     
   private:
     String _token;
     String _server;
-    String _data;
-    String _lastData;
 };
 
 #endif
