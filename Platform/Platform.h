@@ -11,6 +11,7 @@ class Platform
     String sendData(String project, String device,  String data);
     String get(String project, String device);
     String getData();
+    String getLastData(String project, String device);
     
   private:
     String _token;

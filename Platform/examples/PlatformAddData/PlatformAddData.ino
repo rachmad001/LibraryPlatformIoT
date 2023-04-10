@@ -10,8 +10,8 @@ String password = "1234duakali";
 unsigned long lastTime = 0;
 unsigned long interval = 1000;
 
-String projectName = "rumahan";
-String devices = "testing";
+String idProject = "rumahan";
+String idDevices = "testing";
 
 Platform platform(token, server);
 
@@ -27,7 +27,7 @@ void loop() {
     doc["namabelakang"] = "sukri";
     String data = "";
     serializeJson(doc, data);
-    platform.sendData(projectName, devices, data);
+    Serial.println(platform.sendData(projectName, devices, data));
     lastTime = millis();
   }
 }
