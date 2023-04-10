@@ -1,17 +1,17 @@
 #include "Platform.h"
 #include <ArduinoJson.h>
 
-String token =  "ptiZNNdIPfgjMqtQziTXN6cbF";
-String server = "http://192.168.137.1:8000";
+String token =  "qhzLDmz3hD3mvmsaYLgZa7pE2"; //your token
+String server = "http://192.168.137.1:8000"; //host/url server
 
-String ssid = "OPPO A12";
-String password = "1234duakali";
+String ssid = "hotspot"; //ssid wifi
+String password = "hotspot12"; //password wifi
 
 unsigned long lastTime = 0;
 unsigned long interval = 1000;
 
-String idProject = "rumahan";
-String idDevices = "testing";
+String idProject = "z4QZiz50pXveCOBO"; //your id project
+String idDevices = "BwMNrN6uUQJVxZPS"; //your id devices
 
 Platform platform(token, server);
 
@@ -27,7 +27,7 @@ void loop() {
     doc["namabelakang"] = "sukri";
     String data = "";
     serializeJson(doc, data);
-    Serial.println(platform.sendData(projectName, devices, data));
+    Serial.println(platform.sendData(idProject, idDevices, data));
     lastTime = millis();
   }
 }
